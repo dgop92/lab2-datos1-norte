@@ -8,8 +8,8 @@ public abstract class SketchFragment {
     protected PApplet sketch;
     protected float x;
     protected float y;
-    protected float fragmentWidth;
-    protected float fragmentHeight;
+    protected float fwidth;
+    protected float fheight;
 
     public SketchFragment(PApplet sketch, float x, float y, 
         float fragmentWidth, float fragmentHeight) {
@@ -17,23 +17,31 @@ public abstract class SketchFragment {
         this.sketch = sketch;
         this.x = x;
         this.y = y;
-        this.fragmentWidth = fragmentWidth;
-        this.fragmentHeight = fragmentHeight;
+        this.fwidth = fragmentWidth;
+        this.fheight = fragmentHeight;
     }
 
     protected void drawDivison(){
         sketch.stroke(255);
         sketch.strokeWeight(1);
-        sketch.line(x, y, x + fragmentWidth, y);
-        sketch.line(x + fragmentWidth, y, x + fragmentWidth, y + fragmentHeight);
-        sketch.line(x + fragmentWidth, y + fragmentHeight, x, y + fragmentHeight);
-        sketch.line(x, y + fragmentHeight, x, y);
+        sketch.line(x, y, x + fwidth, y);
+        sketch.line(x + fwidth, y, x + fwidth, y + fheight);
+        sketch.line(x + fwidth, y + fheight, x, y + fheight);
+        sketch.line(x, y + fheight, x, y);
     }
 
     protected PVector getPosForCenterImage(int imageWidth, int imageHeight){
-        float xPos = (fragmentWidth - imageWidth) / 2;
-        float yPos = (fragmentHeight - imageHeight) / 2;
+        float xPos = (fwidth - imageWidth) / 2;
+        float yPos = (fheight - imageHeight) / 2;
         return new PVector(x + xPos, y + yPos);
+    }
+
+    protected float getXMid(){
+        return x + (fwidth / 2);
+    }
+
+    protected float getYMid(){
+        return y + (fheight / 2);
     }
 
     abstract public void update();

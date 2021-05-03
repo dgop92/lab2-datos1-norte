@@ -11,6 +11,7 @@ public class ParchisDataCell {
 
     public ParchisDataCell(int cellPos) {
         this.cellPos = cellPos;
+        players = new ArrayList<>();
     }
 
     public void addPlayer(Player player){

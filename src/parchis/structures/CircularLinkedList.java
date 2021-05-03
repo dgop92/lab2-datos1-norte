@@ -30,4 +30,22 @@ public class CircularLinkedList <E>{
         return size;
     }
 
+    public CircularNode<E> getHead() {
+        return head;
+    }
+
+    public void setHead(CircularNode<E> head) {
+        this.head = head;
+    }
+
+    public CircularNode<E> getTail() {
+        return tail;
+    }
+
+    public void setTail(CircularNode<E> tail) {
+        this.tail = tail;
+    }
+
+    
+
 }

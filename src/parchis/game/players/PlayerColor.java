@@ -1,6 +1,6 @@
 package parchis.game.players;
 
-public enum PlayerType {
+public enum PlayerColor {
     
     Rojo,
     Azul,
