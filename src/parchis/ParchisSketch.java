@@ -35,7 +35,9 @@ public class ParchisSketch extends PApplet{
         header = new HeaderFragment(this, 0f, 0f, 800f, 80f, 
             gameControl.getHeaderState()
         );
-        board = new BoardFragment(this, 0f, 80f, 800f, 520);
+        board = new BoardFragment(this, 0f, 80f, 800f, 520, 
+            gameControl.getParchisList()
+        );
 
         header.getDice().registerDiceObserver(gameControl);
 

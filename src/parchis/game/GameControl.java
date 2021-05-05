@@ -24,7 +24,7 @@ public class GameControl implements DiceObserver{
 
         
         parchisList = new CircularLinkedList<>();
-        for (int i = 1; i <= 28; i++) {
+        for (int i = 1; i <= 24; i++) {
             parchisList.add(new ParchisDataCell(i));
         }
 
@@ -59,5 +59,9 @@ public class GameControl implements DiceObserver{
     @Override
     public void OnThrow(int diceValue) {
         System.out.println(diceValue);
+    }
+
+    public CircularLinkedList<ParchisDataCell> getParchisList() {
+        return parchisList;
     }
 }

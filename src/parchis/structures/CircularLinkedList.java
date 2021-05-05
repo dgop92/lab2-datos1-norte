@@ -23,7 +23,9 @@ public class CircularLinkedList <E>{
             tail.next = newNode;  
             tail = newNode;  
             tail.next = head;
-        }  
+        }
+
+        size += 1;
     }
 
     public int getSize() {

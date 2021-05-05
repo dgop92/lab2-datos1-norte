@@ -34,6 +34,8 @@ public class HeaderFragment extends SketchFragment{
 
     public void draw(){
         sketch.fill(HEADER_COLOR);
+        sketch.strokeWeight(1);
+        sketch.stroke(HEADER_COLOR);
         sketch.rect(x, y, fwidth, fheight);
         
         //turn part
