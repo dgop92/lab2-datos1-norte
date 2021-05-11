@@ -2,13 +2,19 @@ package parchis;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import parchis.fragments.BoardFragment;
 import parchis.fragments.HeaderFragment;
 import parchis.game.GameControl;
+import parchis.game.players.Player;
 import parchis.game.players.PlayerColor;
+import parchis.game.views.GameControlView;
+import processing.awt.PSurfaceAWT.SmoothCanvas;
 import processing.core.PApplet;
+import processing.core.PSurface;
 
-public class ParchisSketch extends PApplet{
+public class ParchisSketch extends PApplet implements GameControlView{
     
     public static int SCREEN_WIDTH = 800;
     public static int SCREEN_HEIGHT = 600;
@@ -29,7 +35,7 @@ public class ParchisSketch extends PApplet{
         orders.add(PlayerColor.Azul);
         orders.add(PlayerColor.Rojo);
         orders.add(PlayerColor.Verde);
-        gameControl = new GameControl(orders);
+        gameControl = new GameControl(orders, this);
         
         
         header = new HeaderFragment(this, 0f, 0f, 800f, 80f, 
@@ -59,5 +65,16 @@ public class ParchisSketch extends PApplet{
     @Override
     public void mouseClicked() {
         header.getDice().onClick();
+    }
+
+    @Override
+    public void endOfTheGame(ArrayList<Player> podiumOrder) {
+        this.dispose();
+        PSurface surface = this.getSurface();
+        SmoothCanvas smoothCanvas = (SmoothCanvas)surface.getNative();
+        JFrame frame = (JFrame) smoothCanvas.getFrame();
+        frame.dispose();
+
+        //Create java swing
     }
 }
