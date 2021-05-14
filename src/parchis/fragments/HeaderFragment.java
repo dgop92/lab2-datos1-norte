@@ -18,7 +18,7 @@ public class HeaderFragment extends SketchFragment{
         super(sketch, x, y, fragmentWidth, fragmentHeight);
 
         this.headerState = headerState;
-        HEADER_COLOR = sketch.color(56, 163, 165);
+        HEADER_COLOR = sketch.color(169, 117, 78);
 
         segoeUIBold = sketch.createFont("Segoe UI Bold", 16);
         segoeUI = sketch.createFont("Segoe UI", 14);

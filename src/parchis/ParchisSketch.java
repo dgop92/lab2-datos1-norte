@@ -10,6 +10,7 @@ import parchis.game.GameControl;
 import parchis.game.players.Player;
 import parchis.game.players.PlayerColor;
 import parchis.game.views.GameControlView;
+import parchis.interfaces.MenuFinal;
 import processing.awt.PSurfaceAWT.SmoothCanvas;
 import processing.core.PApplet;
 import processing.core.PSurface;
@@ -28,16 +29,14 @@ public class ParchisSketch extends PApplet implements GameControlView{
     public void settings() {
         size(SCREEN_WIDTH, SCREEN_HEIGHT);
     }
+    
+    public void initGameControl(ArrayList<PlayerColor> orders){
+        gameControl = new GameControl(orders, this);
+    }
 
     @Override
     public void setup() {
-        ArrayList<PlayerColor> orders = new ArrayList<>();
-        orders.add(PlayerColor.Azul);
-        orders.add(PlayerColor.Rojo);
-        orders.add(PlayerColor.Verde);
-        gameControl = new GameControl(orders, this);
-        
-        
+ 
         header = new HeaderFragment(this, 0f, 0f, 800f, 80f, 
             gameControl.getHeaderState()
         );
@@ -69,12 +68,15 @@ public class ParchisSketch extends PApplet implements GameControlView{
 
     @Override
     public void endOfTheGame(ArrayList<Player> podiumOrder) {
+        MenuFinal Interfaz = new MenuFinal();
+        Interfaz.setBounds(20, 20, 800,600 );
+        Interfaz.setVisible(true);
+        Interfaz.setPodimun(podiumOrder);
+
         this.dispose();
         PSurface surface = this.getSurface();
         SmoothCanvas smoothCanvas = (SmoothCanvas)surface.getNative();
         JFrame frame = (JFrame) smoothCanvas.getFrame();
         frame.dispose();
-
-        //Create java swing
     }
 }
