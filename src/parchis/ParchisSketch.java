@@ -10,6 +10,7 @@ import parchis.game.GameControl;
 import parchis.game.players.Player;
 import parchis.game.players.PlayerColor;
 import parchis.game.views.GameControlView;
+import parchis.interfaces.GUIUtils;
 import parchis.interfaces.MenuFinal;
 import processing.awt.PSurfaceAWT.SmoothCanvas;
 import processing.core.PApplet;
@@ -69,7 +70,7 @@ public class ParchisSketch extends PApplet implements GameControlView{
     @Override
     public void endOfTheGame(ArrayList<Player> podiumOrder) {
         MenuFinal Interfaz = new MenuFinal();
-        Interfaz.setBounds(20, 20, 800,600 );
+        Interfaz.setBounds(GUIUtils.getBounds());
         Interfaz.setVisible(true);
         Interfaz.setPodimun(podiumOrder);
 

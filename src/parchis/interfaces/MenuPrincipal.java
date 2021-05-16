@@ -23,7 +23,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setContentPane(fondo);
 
         initComponents();
- 
+        
     }
 
     /**
@@ -54,7 +54,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         if ( insideX && insideY){
             Elección Elección = new Elección();
-            Elección.setBounds(20, 20, 800,600);
+            Elección.setBounds(GUIUtils.getBounds());
             Elección.setVisible(true);
             this.dispose();
         }

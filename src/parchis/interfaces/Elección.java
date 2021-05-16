@@ -5,6 +5,8 @@
  */
 package parchis.interfaces;
 
+import inevaup.dialogs.InfoDialog;
+import inevaup.dialogs.InfoDialog.TypeInfoDialog;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -72,7 +74,7 @@ public class Elección extends javax.swing.JFrame {
         int y = evt.getY();
         boolean insideX = x > 86 && x < 335;
         boolean insideY = y > 510 && y < 549;
-        
+
         if (insideX && insideY) {
             shuffleTurns();
         }
@@ -80,27 +82,45 @@ public class Elección extends javax.swing.JFrame {
         insideX = x > 492 && x < 736;
         insideY = y > 510 && y < 551;
         if (insideX && insideY) {
-            ParchisSketch parchisSketch = new ParchisSketch();
-            ArrayList<PlayerColor> orders = new ArrayList<>();
-            for (String Turno : Turnos) {
-                switch (Turno) {
-                    case "Rojo":
-                        orders.add(PlayerColor.Rojo);
-                        break;
+            if (Turnos.isEmpty()) {
+                InfoDialog errDialog = new InfoDialog(
+                    this,
+                    "Error",
+                    "Por favor, debe elegir los turnos antes de empezar",
+                    TypeInfoDialog.ERROR_DIALOG
+                );
+                errDialog.setVisible(true);
+            } else {
+                ArrayList<PlayerColor> orders = new ArrayList<>();
+                for (String Turno : Turnos) {
+                    switch (Turno) {
+                        case "Rojo":
+                            orders.add(PlayerColor.Rojo);
+                            break;
 
-                    case "Azul":
-                        orders.add(PlayerColor.Azul);
-                        break;
+                        case "Azul":
+                            orders.add(PlayerColor.Azul);
+                            break;
 
-                    case "Verde":
-                        orders.add(PlayerColor.Verde);
-                        break;
+                        case "Verde":
+                            orders.add(PlayerColor.Verde);
+                            break;
 
+                    }
                 }
+                InfoDialog dialog = new InfoDialog(
+                    this,
+                    "Como Jugar",
+                    "Todas las acciones son controladas automaticamente "
+                        + "solo debe hacer click sobre el dado para jugar",
+                    TypeInfoDialog.INFO_DIALOG
+                );
+                dialog.setVisible(true);
+                ParchisSketch parchisSketch = new ParchisSketch();
+                parchisSketch.initGameControl(orders);
+                parchisSketch.run();
+                this.dispose();
             }
-            parchisSketch.initGameControl(orders);
-            parchisSketch.run();
-            this.dispose();
         }
     }//GEN-LAST:event_formMouseClicked
 
